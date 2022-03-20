@@ -22,7 +22,7 @@ public class SingleController {
 	@ResponseBody
 	public String naiveResponseBody() {
 		return "<p>Hang on, hang on for your life \n"
-				+ "<p>The animals are all insane- God help us";
+				+ "<p>The animals are all insane -- God help us";
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class SingleController {
 	 *  (ii) takes the value coming from the request ?name=<value>
 	 *   
 	 * @param name the possibly empty value from the url used
-	 * @param model a Model carrying the mapping of attribute "name" to the value
+	 * @param model a Model which will be carrying the mapping of attribute "name" to the value
 	 * @return a String with the name of the page to be shown
 	 */
 	@GetMapping("/greeting")
@@ -58,7 +58,16 @@ public class SingleController {
 
 
 	
-	
+	/**
+	 * The most sophisticated of all ways: ModelAndView. What you return is a pair of a model and a view.
+	 * See how spring gives you a model, to which you add attribute-value pairs
+	 * Then, you new a ModelAndView with 
+	 *   (a) the page you 're heading at +
+	 *   (b) the model you have populated with attribute-value pairs
+	 *    
+	 * @param model a Model which will be carrying attribute-value pairs as a map
+	 * @return a ModelAndView object with the pair of target page path and the updated model
+	 */
 	@RequestMapping(value = "/model-view")
 	public ModelAndView welcome(ModelMap model) {
 		model.put("name", "lawless");
